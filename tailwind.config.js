@@ -32,9 +32,9 @@ module.exports = {
       xxl: "1440px",
     },
     fontFamily: {
-      sans: ["Inter", "sans-serif"],
-      serif: ["Lora", "serif"],
-      mono: ["Inconsolata", "monospace"],
+      sans: "sans-serif",
+      serif: "serif",
+      mono: "monospace",
     },
     boxShadow: {
       "xl-light": "0px 5px 30px 0px rgba(0, 0, 0, 0.10)",

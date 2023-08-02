@@ -19,7 +19,7 @@ export default function Home() {
   }, [currentFont]);
 
   return (
-    <div className={`${fontClass}`}>
+    <div className={`${fontClass} `}>
       <NavBar currentFont={currentFont} applyFont={setCurrentFont} />
       <SearchBar />
       <Dictionary />
