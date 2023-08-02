@@ -1,12 +1,47 @@
+"use client";
 
 import logo from "../assets/logo.svg";
 import moon from "../assets/icon-moon.svg";
-import chevron from "../assets/icon-arrow-down.svg";
-import Image from "next/image";
+import moonPurple from "../assets/icon-moon-purple.svg";
 
-const NavBar = () => {
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import ThemeSwitcher from "./ThemeSwitcher";
+import useToggler from "@/hooks/useToggler";
+import FontSwitcher from "./FontSwitcher";
+import fontNames from "@/utils/fonts";
+import { useMotionValue } from "framer-motion";
+
+const NavBar = (props) => {
+  const [isDarkTheme, toggleTheme] = useToggler(
+    localStorage.getItem("theme-color") === "dark"
+  );
+
+  const [isDropdownExpanded, toggleDropdown] = useToggler(false);
+
+  useEffect(() => {
+    document.documentElement.className = isDarkTheme ? "dark" : "";
+    localStorage.setItem("theme-color", isDarkTheme ? "dark" : "light");
+  }, [isDarkTheme]);
+
+  function selectItem(value) {
+    props.applyFont(value);
+    toggleDropdown();
+    console.log(value);
+  }
+
+  const listItems = Object.entries(fontNames).map(([key, value]) => (
+    <li
+      key={key}
+      className={`${value} mb-4 last:mb-0 hover:text-purple `}
+      onClick={() => selectItem(key)}
+    >
+      <button>{key}</button>
+    </li>
+  ));
+
   return (
-    <nav className='w-container flexBetween mx-auto my-cx'>
+    <nav className="w-container flexBetween mx-auto my-cx">
       <Image
         src={logo}
         alt="logo"
@@ -16,33 +51,26 @@ const NavBar = () => {
       />
 
       <div className="flex justify-end items-center">
-        <div className="flexBetween w-[100px]">
-          <select name="fonts" id="fonts">
-            <option value="sans serif" className="font-san">
-              Sans Serif
-            </option>
-            <option value="serif" className="font-serif">
-              Serif
-            </option>
-            <option value="mono" className="font-mono">
-              Mono
-            </option>
-          </select>
-          <Image src={chevron} alt="chevron" />
-        </div>
+        <FontSwitcher
+          applyfont={props.applyFont}
+          currentFont={props.currentFont}
+          toggle={toggleDropdown}
+          isExpanded={isDropdownExpanded}
+        >
+          {listItems}
+        </FontSwitcher>
 
-        <span className="nav-divider mx-7"></span>
-        <label className="switch">
-          <input type="checkbox" />
-          <span className="slider"></span>
-        </label>
-        <Image
-          src={moon}
-          alt="dark mode"
-          width={20}
-          height={20}
-          className="object-contain ml-5"
-        />
+        <span className="nav-divider mx-5"></span>
+        <div className="flexStart">
+          <ThemeSwitcher checked={isDarkTheme} toggle={toggleTheme} />
+          <Image
+            src={isDarkTheme ? moonPurple : moon}
+            alt="dark theme"
+            className="object-contain ml-5"
+            width={20}
+            height={20}
+          />
+        </div>
       </div>
     </nav>
   );

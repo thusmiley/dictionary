@@ -4,7 +4,7 @@ import link from "../assets/icon-new-window.svg";
 const Dictionary = () => {
   return (
     <section className="w-container mx-auto">
-      <div className="">
+      <div>
         <div className="flexBetween mb-8 md:mb-10">
           <div>
             <h1 className="heading1 mb-2">keyword</h1>
@@ -18,7 +18,7 @@ const Dictionary = () => {
             viewBox="0 0 75 75"
             className="cursor-pointer play"
           >
-            <g fill="#A445ED" fill-rule="evenodd">
+            <g fill="#A445ED">
               <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
               <path d="M29 27v21l21-10.5z" />
             </g>
@@ -73,11 +73,9 @@ const Dictionary = () => {
         </div>
 
         <div className="flexStart mb-20 md:mb-28 mt-8 md:mt-10 pt-5 border-t-[1px]">
-          <p className="mr-5 source">Source</p>
+          <p className="mr-5 source text-[#757575]">Source</p>
           <p className="source">
-            <span className="text-[#2d2d2d]">
-              https://en.wiktionary.org/wiki/keyboard
-            </span>
+            <span>https://en.wiktionary.org/wiki/keyboard</span>
           </p>
           <a href="/" target="_blank" className="ml-2">
             <Image src={link} alt="link" width={12} height={12} />
@@ -95,7 +93,6 @@ const Dictionary = () => {
           instead.
         </p>
       </div>
-
     </section>
   );
 };
