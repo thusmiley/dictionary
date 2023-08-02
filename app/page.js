@@ -8,10 +8,11 @@ import fontNames from "@/utils/fonts";
 
 export default function Home() {
   const [currentFont, setCurrentFont] = useState(
-    localStorage.getItem("current-font") ?? "Sans Serif"
+    localStorage.getItem("current-font") ?? "Serif"
   );
 
   const fontClass = fontNames[currentFont];
+  console.log(fontClass);
 
   useEffect(() => {
     localStorage.setItem("current-font", currentFont);

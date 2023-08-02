@@ -27,7 +27,6 @@ const NavBar = (props) => {
   function selectItem(value) {
     props.applyFont(value);
     toggleDropdown();
-    console.log(value);
   }
 
   const listItems = Object.entries(fontNames).map(([key, value]) => (
@@ -36,7 +35,7 @@ const NavBar = (props) => {
       className={`${value} mb-4 last:mb-0 hover:text-purple `}
       onClick={() => selectItem(key)}
     >
-      <button>{key}</button>
+      <button>{key} and {value}</button>
     </li>
   ));
 
@@ -50,7 +49,7 @@ const NavBar = (props) => {
         className="object-contain"
       />
 
-      <div className="flex justify-end items-center">
+      <div className="flexEnd">
         <FontSwitcher
           applyfont={props.applyFont}
           currentFont={props.currentFont}
@@ -61,6 +60,7 @@ const NavBar = (props) => {
         </FontSwitcher>
 
         <span className="nav-divider mx-5"></span>
+        
         <div className="flexStart">
           <ThemeSwitcher checked={isDarkTheme} toggle={toggleTheme} />
           <Image
