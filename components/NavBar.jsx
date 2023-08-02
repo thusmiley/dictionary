@@ -35,7 +35,7 @@ const NavBar = (props) => {
       className={`${value} mb-4 last:mb-0 hover:text-purple `}
       onClick={() => selectItem(key)}
     >
-      <button>{key} and {value}</button>
+      <button>{key}</button>
     </li>
   ));
 
