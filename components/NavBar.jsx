@@ -15,7 +15,7 @@ import { useMotionValue } from "framer-motion";
 const NavBar = (props) => {
   const [isDarkTheme, toggleTheme] = useToggler(() => {
     if (typeof window !== undefined) {
-      return localStorage.getItem("theme-color") === "dark";
+      return window.localStorage.getItem("theme-color") === "dark";
     }
   });
 
@@ -23,7 +23,7 @@ const NavBar = (props) => {
 
   useEffect(() => {
     document.documentElement.className = isDarkTheme ? "dark" : "";
-    localStorage.setItem("theme-color", isDarkTheme ? "dark" : "light");
+    window.localStorage.setItem("theme-color", isDarkTheme ? "dark" : "light");
   }, [isDarkTheme]);
 
   function selectItem(value) {
