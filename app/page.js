@@ -10,16 +10,16 @@ export default function Home() {
   const [currentFont, setCurrentFont] = useState(() => {
     if (
       typeof window !== "undefined" &&
-      window.localStorage.getItem("current-font") !== null
+      localStorage.getItem("current-font") !== null
       ) {
-      return window.localStorage.getItem("current-font");
+      return localStorage.getItem("current-font");
     } else {
       return "Serif";
     }
   });
 
   useEffect(() => {
-    window.localStorage.setItem("current-font", currentFont);
+    localStorage.setItem("current-font", currentFont);
   }, [currentFont]);
 
   const fontClass = fontNames[currentFont];
