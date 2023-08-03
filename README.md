@@ -17,7 +17,7 @@ Dictionary Webapp
 
 ### Links
 
-- Git URL: https://github.com/thusmiley/manage.git
+- Git URL: https://github.com/thusmiley/dictionary.git
 - Live Site URL: https://manage-ashy.vercel.app/
 
 ### Built with
