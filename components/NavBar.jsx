@@ -13,9 +13,11 @@ import fontNames from "@/utils/fonts";
 import { useMotionValue } from "framer-motion";
 
 const NavBar = (props) => {
-  const [isDarkTheme, toggleTheme] = useToggler(
-    localStorage.getItem("theme-color") === "dark"
-  );
+  const [isDarkTheme, toggleTheme] = useToggler(() => {
+    if (typeof window !== undefined) {
+      return localStorage.getItem("theme-color") === "dark";
+    }
+  });
 
   const [isDropdownExpanded, toggleDropdown] = useToggler(false);
 
