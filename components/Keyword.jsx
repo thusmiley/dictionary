@@ -1,28 +1,44 @@
 import Image from "next/image";
 import link from "../assets/icon-new-window.svg";
+import { useEffect, useRef } from "react";
 
-const Dictionary = () => {
+const Keyword = ({ data }) => {
+  // const validPhonetics = data.phonetics?.find(
+  //   (phonetics) => phonetics.text && phonetics.audio
+  // );
+  const phonetics = data.phonetics;
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio(phonetics.audio);
+  });
+
+  function playAudio() {
+    audioRef.current.play();
+  }
+
   return (
     <section className="w-container mx-auto">
       <div>
         <div className="flexBetween mb-8 md:mb-10">
           <div>
-            <h1 className="heading1 mb-2">keyword</h1>
-            <h2 className="heading2">/&prime;ki&#x205A;bɔ&#x205A;d/</h2>
+            <h1 className="heading1 mb-2">{data.word}</h1>
+            <h2 className="heading2">{data.phonetic}</h2>
           </div>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            viewBox="0 0 75 75"
-            className="cursor-pointer play"
-          >
-            <g fill="#A445ED">
-              <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
-              <path d="M29 27v21l21-10.5z" />
-            </g>
-          </svg>
+          <button onClick={playAudio}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 75 75"
+              className="cursor-pointer play"
+            >
+              <g fill="#A445ED">
+                <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
+                <path d="M29 27v21l21-10.5z" />
+              </g>
+            </svg>
+          </button>
         </div>
         {/* noun  */}
         <div className="flexBetween mb-8 md:mb-10">
@@ -82,19 +98,8 @@ const Dictionary = () => {
           </a>
         </div>
       </div>
-
-      {/* no definitions found  */}
-      <div className="text-center mt-32 hidden">
-        <span className="text-[64px]">😕</span>
-        <p className="paragraph font-bold mt-10 mb-6">No Definitions Found</p>
-        <p className="paragraph">
-          Sorry pal, we couldn't find definitions for the word you were looking
-          for. You can try the search again at later time or head to the web
-          instead.
-        </p>
-      </div>
     </section>
   );
 };
 
-export default Dictionary;
+export default Keyword;
