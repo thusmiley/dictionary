@@ -28,4 +28,5 @@ Dictionary Webapp
 - React
 - API
 - Mobile-first workflow
-- Color scheme
+- Dark mode
+- Font switch

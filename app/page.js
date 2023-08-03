@@ -7,16 +7,22 @@ import SearchBar from "@/components/SearchBar";
 import fontNames from "@/utils/fonts";
 
 export default function Home() {
-  const [currentFont, setCurrentFont] = useState(
-    localStorage.getItem("current-font") ?? "Serif"
-  );
-
-  const fontClass = fontNames[currentFont];
-  console.log(fontClass);
+  const [currentFont, setCurrentFont] = useState(() => {
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("current-font") !== null
+      ) {
+      return localStorage.getItem("current-font");
+    } else {
+      return "Serif";
+    }
+  });
 
   useEffect(() => {
     localStorage.setItem("current-font", currentFont);
   }, [currentFont]);
+
+  const fontClass = fontNames[currentFont];
 
   return (
     <div className={`${fontClass} `}>

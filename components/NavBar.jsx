@@ -32,7 +32,7 @@ const NavBar = (props) => {
   const listItems = Object.entries(fontNames).map(([key, value]) => (
     <li
       key={key}
-      className={`${value.toString()} mb-4 last:mb-0 hover:text-purple `}
+      className={`${value} mb-4 last:mb-0 hover:text-purple `}
       onClick={() => selectItem(key)}
     >
       <button>{key}</button>
