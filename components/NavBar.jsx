@@ -39,8 +39,15 @@ const NavBar = (props) => {
 
   return (
     <nav className="w-container flexBetween mx-auto my-8 md:mt-[58px] md:mb-[50px]">
-      <Link href='/'><Image src={logo} alt="logo" width={32} height={32} /></Link>
-      
+      <Link href="/">
+        <Image
+          src={logo}
+          alt="logo"
+          width={32}
+          height={32}
+          className="w-8 h-8"
+        />
+      </Link>
 
       <div className="flexEnd">
         <FontSwitcher applyfont={props.applyFont} currentFont={props.currentFont} toggle={toggleDropdown} isExpanded={isDropdownExpanded}>
