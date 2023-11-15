@@ -26,7 +26,7 @@ Dictionary Webapp
 - Tailwind
 - Nextjs
 - React
-- API
+- API: https://dictionaryapi.dev/
 - Mobile-first workflow
 - Dark mode
-- Font switch
+- Font switcher

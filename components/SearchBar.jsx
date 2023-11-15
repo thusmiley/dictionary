@@ -1,40 +1,47 @@
 "use client";
 
-import search from "../assets/icon-search.svg";
+import searchIcon from "../assets/icon-search.svg";
 import Image from "next/image";
 
-import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useEffect, useCallback } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 const SearchBar = (props) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const initialInput = searchParams.get("keyword") ?? "keyboard";
+  const initialInput = searchParams.get("search") ?? "hello";
 
   const [input, setInput] = useState("");
-  const [isValid, setIsValid] = useState(true);
-
-  const invalidClass = !isValid ? "border-[1px] border-red" : "";
+  const [isEmpty, setIsEmpty] = useState(false);
 
   useEffect(() => {
     setInput(initialInput);
     props.fetchData(initialInput);
   }, [initialInput]);
 
+  const createQueryString = useCallback(
+    (name, value) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   function handleSubmit(e) {
     e.preventDefault();
     if (input.length < 1) {
-      setIsValid(false);
+      setIsEmpty(true);
       return;
     }
-    setIsValid(true);
-    searchParams.set("keyword", input);
+    setIsEmpty(false);
+    router.push(pathname + "?" + createQueryString("search", input));
   }
 
   return (
-    <form
-      className="w-container flexBetween mx-auto mb-cx relative searchbox"
-      onSubmit={handleSubmit}
-    >
+    <form className={`${isEmpty ? "border-red" : "border-transparent"} w-container flexBetween mx-auto mb-8 relative border-[1px] searchbox md:mb-[50px]`} onSubmit={handleSubmit}>
       <input
         type="search"
         name="search"
@@ -46,19 +53,9 @@ const SearchBar = (props) => {
           setInput(e.target.value);
         }}
       />
-      <Image
-        src={search}
-        alt="search"
-        width={16}
-        height={16}
-        className="absolute right-6 bg-transparent"
-      />
+      <Image src={searchIcon} alt="search" width={16} height={16} className="absolute right-6 bg-transparent" />
       {/* error message  */}
-      {!isValid && (
-        <p className="error paragraph absolute -bottom-7 left-0 text-[#ff5252] hidden">
-          Whoops, can't be empty...
-        </p>
-      )}
+      {isEmpty && <p className="text-[12px] absolute -bottom-7 text-red left-0">Whoops, can't be empty...</p>}
     </form>
   );
 };

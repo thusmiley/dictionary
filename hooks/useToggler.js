@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 export default function useToggler(initial = false) {
-  const [is, setIs] = useState(initial);
+  const [show, setShow] = useState(initial);
 
   function toggle() {
-    setIs((prevIs) => !prevIs);
+    setShow((prevState) => !prevState);
   }
 
-  return [is, toggle];
+  return [show, toggle];
 }

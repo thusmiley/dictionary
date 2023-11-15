@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400;1,500;1,600;1,700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --container-w: 94%;
+  --container-w: 90%;
 }
 
 @screen md {
   :root {
-    --container-w: 90%;
     max-width: 736px;
     margin-left: auto;
     margin-right: auto;
@@ -36,35 +35,42 @@ img {
 .heading1 {
   font-size: 32px;
   font-weight: 700;
+  @screen md {
+    font-size: 64px;
+  }
 }
 .heading2 {
   @apply text-purple;
   font-size: 16px;
   line-height: 1.5rem;
   font-weight: 400;
+  @screen md {
+    font-size: 24px;
+    line-height: 29px;
+  }
 }
 .heading3 {
   font-size: 18px;
   font-style: italic;
   font-weight: bold;
+  @screen md {
+    font-size: 24px;
+  }
 }
 .heading4 {
   @apply text-grey-75;
   font-size: 16px;
+  @screen md {
+    font-size: 20px;
+    line-height: 24px;
+  }
 }
 .paragraph {
   font-size: 15px;
   line-height: 24px;
-}
-.font-text {
-  font-size: 14px;
-  line-height: 24px;
-  font-weight: bold;
-}
-.source {
-  @apply decoration-grey-75;
-  font-size: 14px;
-  text-decoration: underline;
+  @screen md {
+    font-size: 18px;
+  }
 }
 
 /* general styles  */
@@ -88,38 +94,15 @@ img {
   @apply max-w-[1440px] mx-auto;
 }
 
-/* font select  */
-.dropdown-enter {
-  opacity: 0;
-  transform: scale(0.9);
-}
-.dropdown-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 300ms, transform 300ms;
-}
-.dropdown-exit {
-  opacity: 1;
-}
-.dropdown-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.nav-divider {
-  @apply bg-grey-e9;
-  width: 1px;
-  height: 32px;
-}
-
 /* search  */
 .searchbox {
   @apply bg-grey-f4 dark:bg-[#1f1f1f];
   border-radius: 16px;
   padding: 14px 24px;
-  border: 1px solid transparent;
   cursor: pointer;
+  @screen md {
+    padding: 22px 24px;
+  }
 }
 
 .searchbox:hover,
@@ -134,6 +117,9 @@ img {
   border: none;
   font-size: 16px;
   font-family: inherit;
+  @screen md {
+    font-size: 20px;
+  }
 }
 /* remove x icon in search bar  */
 input[type="search"]::-webkit-search-decoration,
@@ -147,8 +133,10 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #f4f4f4 inset !important;
-  -webkit-text-fill-color: #1f1f1f !important;
+  transition: #1f1f1f 5000000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0 30px #1f1f1f inset !important;
+  -webkit-text-fill-color: #fff !important;
+  background-clip: content-box !important;
 }
 
 .play:hover path {
@@ -159,26 +147,14 @@ input:-webkit-autofill:active {
   opacity: 1;
 }
 
-.divider {
-  @apply bg-grey-e9;
-  height: 1px;
-  width: 100%;
-}
-
-.definition::before {
+.bullet::before {
   @apply text-purple;
   content: "\2022";
   font-weight: bold;
   display: inline-block;
-  width: 20px;
-}
-
-.definition:not(:last-child) {
-  margin-bottom: 4px;
-}
-
-.example {
-  @apply text-grey-75;
-  margin-left: 20px;
-  margin-bottom: 13px;
+  position: absolute;
+  left: -20px;
+  @screen md {
+    left: -22px;
+  }
 }

@@ -10,7 +10,6 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import useToggler from "@/hooks/useToggler";
 import FontSwitcher from "./FontSwitcher";
 import fontNames from "@/utils/fonts";
-import { useMotionValue } from "framer-motion";
 
 const NavBar = (props) => {
   const [isDarkTheme, toggleTheme] = useToggler(() => {
@@ -42,7 +41,7 @@ const NavBar = (props) => {
   ));
 
   return (
-    <nav className="w-container flexBetween mx-auto my-cx">
+    <nav className="w-container flexBetween mx-auto my-8 md:mt-[58px] md:mb-[50px]">
       <Image
         src={logo}
         alt="logo"

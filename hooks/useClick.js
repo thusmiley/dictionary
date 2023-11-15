@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 
-export default function useClick(ref, is, setIs) {
+export default function useClick(ref, show, setShow) {
   useEffect(() => {
     function handleClick(event) {
       if (ref.current && !ref.current.contains(event.target)) {
-        if (!is) return;
-        setIs(false);
+        if (!show) return;
+        setShow(false);
       }
     }
 
@@ -13,5 +13,5 @@ export default function useClick(ref, is, setIs) {
     return () => {
       document.removeEventListener("click", handleClick);
     };
-  }, [ref, is, setIs]);
+  }, [ref, show, setShow]);
 }

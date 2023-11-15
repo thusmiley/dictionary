@@ -9,8 +9,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta property="og:image" content="/public/preview.jpg" />
+        <meta property="og:image" content="/preview.jpg" />
       </head>
       <body>{children}</body>
     </html>
