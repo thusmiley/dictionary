@@ -20,7 +20,7 @@ const FontSwitcher = (props) => {
           src={chevron}
           width={12}
           height={12}
-          className="object-contain ml-4"
+          className="ml-4"
           alt='arrow down'
         />
       </button>

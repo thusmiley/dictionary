@@ -10,10 +10,11 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import useToggler from "@/hooks/useToggler";
 import FontSwitcher from "./FontSwitcher";
 import fontNames from "@/utils/fonts";
+import Link from "next/link";
 
 const NavBar = (props) => {
   const [isDarkTheme, toggleTheme] = useToggler(() => {
-    if (typeof window !== undefined) {
+    if (typeof window !== "undefined") {
       return localStorage.getItem("theme-color") === "dark";
     }
   });
@@ -38,7 +39,8 @@ const NavBar = (props) => {
 
   return (
     <nav className="w-container flexBetween mx-auto my-8 md:mt-[58px] md:mb-[50px]">
-      <Image src={logo} alt="logo" width={32} height={32} className="object-contain" />
+      <Link href='/'><Image src={logo} alt="logo" width={32} height={32} /></Link>
+      
 
       <div className="flexEnd">
         <FontSwitcher applyfont={props.applyFont} currentFont={props.currentFont} toggle={toggleDropdown} isExpanded={isDropdownExpanded}>

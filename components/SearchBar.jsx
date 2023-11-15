@@ -40,6 +40,11 @@ const SearchBar = (props) => {
     router.push(pathname + "?" + createQueryString("search", input));
   }
 
+  window.addEventListener("load", (event) => {
+    router.replace("/", undefined, { shallow: true });
+  });
+
+
   return (
     <form className={`${isEmpty ? "border-red" : "border-transparent"} w-container flexBetween mx-auto mb-8 relative border-[1px] searchbox md:mb-[50px]`} onSubmit={handleSubmit}>
       <input
