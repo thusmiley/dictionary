@@ -31,32 +31,17 @@ const NavBar = (props) => {
   }
 
   const listItems = Object.entries(fontNames).map(([key, value]) => (
-    <li
-      key={key}
-      className={`${value} mb-4 last:mb-0 hover:text-purple `}
-      onClick={() => selectItem(key)}
-    >
+    <li key={key} className={`${value} mb-4 last:mb-0 hover:text-purple `} onClick={() => selectItem(key)}>
       <button>{key}</button>
     </li>
   ));
 
   return (
     <nav className="w-container flexBetween mx-auto my-8 md:mt-[58px] md:mb-[50px]">
-      <Image
-        src={logo}
-        alt="logo"
-        width={32}
-        height={32}
-        className="object-contain"
-      />
+      <Image src={logo} alt="logo" width={32} height={32} className="object-contain" />
 
       <div className="flexEnd">
-        <FontSwitcher
-          applyfont={props.applyFont}
-          currentFont={props.currentFont}
-          toggle={toggleDropdown}
-          isExpanded={isDropdownExpanded}
-        >
+        <FontSwitcher applyfont={props.applyFont} currentFont={props.currentFont} toggle={toggleDropdown} isExpanded={isDropdownExpanded}>
           {listItems}
         </FontSwitcher>
 
@@ -64,13 +49,7 @@ const NavBar = (props) => {
 
         <div className="flexStart">
           <ThemeSwitcher checked={isDarkTheme} toggle={toggleTheme} />
-          <Image
-            src={isDarkTheme ? moonPurple : moon}
-            alt="dark theme"
-            className="object-contain ml-5"
-            width={20}
-            height={20}
-          />
+          <Image src={isDarkTheme ? moonPurple : moon} alt="dark theme" className="object-contain ml-5" width={20} height={20} />
         </div>
       </div>
     </nav>
